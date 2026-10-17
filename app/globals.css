@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Heebo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  --color-bg: #0a0a0d;
+  --color-surface: #131318;
+  --color-surface-2: #1b1b22;
+  --color-line: #26262f;
+  --color-muted: #8e8e9c;
+  --color-brand: #c6f432;
+  --color-brand-ink: #0a0a0d;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-bg);
+}
+
+/* גריד מסונרי – עמודות זורמות מימין לשמאל ב-RTL */
+.masonry {
+  column-gap: 12px;
+  columns: 2;
+}
+@media (min-width: 768px) {
+  .masonry { columns: 3; }
+}
+@media (min-width: 1200px) {
+  .masonry { columns: 4; }
+}
+@media (min-width: 1600px) {
+  .masonry { columns: 5; }
+}
+
+.btn-brand {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2 text-sm font-bold text-brand-ink transition hover:brightness-110 active:scale-[.98] disabled:cursor-not-allowed disabled:opacity-50;
+}
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border border-line bg-surface-2 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:border-zinc-600 hover:text-white;
+}
+.field {
+  @apply w-full rounded-xl border border-line bg-surface-2 px-3 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-500 outline-none transition focus:border-brand/60;
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(-100%); }
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(100%);
+  background: linear-gradient(90deg, transparent, rgba(198, 244, 50, 0.08), transparent);
+  animation: shimmer 1.8s infinite;
+}
+
+/* מספרים ואנגלית בתוך טקסט עברי */
+.ltr { direction: ltr; unicode-bidi: isolate; }
